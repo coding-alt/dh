@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<meta name="theme-color" content="#f3f4f7" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<title>分身 · 数字人口播</title>
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="7" y="5" width="3.4" height="14" rx="1.2" fill="currentColor" stroke="none"/><rect x="13.6" y="5" width="3.4" height="14" rx="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19h14"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V4m0 0L8.2 7.8M12 4l3.8 3.8"/><path d="M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3.5" y="6" width="12" height="12" rx="2.5"/><path d="M15.5 11l5-3v8l-5-3"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4.5h-4.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.5v5h3l4 3.5V6L7 9.5H4Z"/><path d="M15 9a4 4 0 0 1 0 6"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9.5v5h3l4 3.5V6L7 9.5H4Z"/><path d="M15.5 9.5l4 5m0-5-4 5"/></symbol>
+  <symbol id="i-ai" viewBox="0 0 24 24"><path d="M12 3.5l2.1 5.4L19.5 11l-5.4 2.1L12 18.5l-2.1-5.4L4.5 11l5.4-2.1L12 3.5Z"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.7-4 3.5-6 7.2-6s6.5 2 7.2 6"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 6.5h15M9.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v1.5M6.5 6.5l.9 12.3a1.6 1.6 0 0 0 1.6 1.5h6a1.6 1.6 0 0 0 1.6-1.5l.9-12.3"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></symbol>
+</svg>
+
+<div class="ambient" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="grain"></span>
+</div>
+
+<div class="shell">
+  <div class="screens" id="screens">
+
+    <!-- ============================ HOME ============================ -->
+    <section class="screen is-active" id="screen-home" data-screen="home">
+      <header class="topbar">
+        <div class="brand"><span class="brand-dot"></span>VOICE&nbsp;TWIN<span class="brand-sub">数字人分身</span></div>
+        <button class="ghost-btn" id="btn-works-home">作品</button>
+      </header>
+
+      <div class="hero">
+        <p class="eyebrow">AI DIGITAL PRESENTER</p>
+        <h1>让你的分身<br /><em>替你出镜。</em></h1>
+        <p class="lede">上传一段真实口播，提取声音与形象。<br />之后，只写文案就够了。</p>
+      </div>
+
+      <div id="avatar-zone" class="zone"></div>
+
+      <div class="stat-row" id="home-stats">
+        <div class="stat"><strong id="stat-avatars">0</strong><span>个分身</span></div>
+        <div class="stat-line"></div>
+        <div class="stat"><strong id="stat-videos">0</strong><span>条成片</span></div>
+        <div class="stat-line"></div>
+        <div class="stat"><strong id="stat-reuse">0</strong><span>次复用</span></div>
+      </div>
+
+      <div class="tip-block">
+        <p class="mini-label">拍摄建议 · 只需一次</p>
+        <div class="tip-grid">
+          <span>1–2 分钟</span><span>正对镜头</span><span>安静环境</span><span>光线稳定</span>
+        </div>
+        <p class="tip-note">自动截取 14–30s 干净人声完成复刻，无需训练等待。</p>
+      </div>
+
+      <button class="resume-bar" id="resume-bar" hidden>
+        <span class="pulse-dot"></span>
+        <span id="resume-text">有一条视频正在生成</span>
+        <svg class="ic"><use href="#i-chevron"/></svg>
+      </button>
+
+      <div class="hist-strip" id="home-recent" hidden>
+        <div class="strip-head"><span>最近成片</span><button class="link-btn" id="btn-works-home2">全部</button></div>
+        <div class="strip-body" id="home-recent-body"></div>
+      </div>
+
+      <div class="safe-bottom"></div>
+    </section>
+
+    <!-- =========================== CREATE =========================== -->
+    <section class="screen" id="screen-create" data-screen="create" inert>
+      <header class="topbar">
+        <button class="icon-btn" data-back="home" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+        <span class="topbar-title">写一条口播</span>
+        <button class="ghost-btn" id="btn-works-create">作品</button>
+      </header>
+
+      <div class="twin-chip" id="twin-chip"></div>
+
+      <div class="editor">
+        <textarea id="script" maxlength="1200" placeholder="今天想聊点什么？&#10;写下文案，你的分身替你开口。"></textarea>
+        <div class="editor-foot">
+          <div class="counts">
+            <span id="char-count">0 字</span><i></i><span id="est-time">约 0 秒</span>
+            <span class="draft-hint" id="draft-hint" aria-live="polite"></span>
+          </div>
+          <div class="editor-tools">
+            <button class="chip-btn" id="btn-clear">清空</button>
+            <button class="chip-btn accent" id="btn-ai"><svg class="ic"><use href="#i-sparkle"/></svg>AI 帮我写</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ideas" id="ideas">
+        <button class="idea" data-idea="career">职场干货</button>
+        <button class="idea" data-idea="product">产品种草</button>
+        <button class="idea" data-idea="knowledge">知识分享</button>
+        <button class="idea" data-idea="vlog">生活记录</button>
+      </div>
+
+      <div class="voice-card" id="voice-card">
+        <div class="voice-left">
+          <div class="voice-orb" id="voice-orb"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+          <div>
+            <p class="voice-title">复刻音色</p>
+            <p class="voice-sub" id="voice-sub">点击右侧试听</p>
+          </div>
+        </div>
+        <button class="try-btn" id="btn-try"><svg class="ic"><use href="#i-play"/></svg><span>试听</span></button>
+        <audio id="preview-audio" preload="none"></audio>
+      </div>
+
+      <div class="compose-hints">
+        <span><svg class="ic"><use href="#i-clock"/></svg><b id="hint-duration">0s</b> 成片</span>
+        <span><svg class="ic"><use href="#i-video"/></svg>9:16 竖屏</span>
+        <span><svg class="ic"><use href="#i-ai"/></svg>AI 标识可选</span>
+      </div>
+
+      <div class="options" id="compose-options">
+        <button class="option-row" id="opt-subtitles" role="switch" aria-checked="false">
+          <span class="option-main"><b>烧录字幕</b><small>把讲稿压进画面，默认不带</small></span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+        <button class="option-row" id="opt-label" role="switch" aria-checked="false">
+          <span class="option-main"><b>「AI 生成」标识</b><small>合成内容合规标识，默认不加</small></span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="primary" id="btn-generate" disabled>
+          <span>生成口播视频</span>
+          <svg class="ic"><use href="#i-chevron"/></svg>
+        </button>
+        <p class="cta-note">复用分身，不消耗额外形象训练</p>
+      </div>
+      <div class="safe-bottom"></div>
+    </section>
+
+    <!-- ============================ WORKS ============================ -->
+    <section class="screen" id="screen-works" data-screen="works" inert>
+      <header class="topbar">
+        <button class="icon-btn" data-back="home" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+        <span class="topbar-title">作品</span>
+        <span class="ghost-btn mono" id="works-total">—</span>
+      </header>
+
+      <div class="works-list" id="works-list"></div>
+
+      <nav class="pager" id="works-pager" hidden aria-label="翻页">
+        <button class="pager-btn" id="works-prev"><svg class="ic"><use href="#i-back"/></svg><span>上一页</span></button>
+        <span class="pager-info" id="works-page-info">1 / 1</span>
+        <button class="pager-btn" id="works-next"><span>下一页</span><svg class="ic"><use href="#i-chevron"/></svg></button>
+      </nav>
+
+      <div class="safe-bottom"></div>
+    </section>
+
+    <!-- ========================== PROGRESS ========================== -->
+    <section class="screen" id="screen-progress" data-screen="progress" inert>
+      <header class="topbar">
+        <button class="icon-btn" id="btn-progress-back" aria-label="收起"><svg class="ic"><use href="#i-back"/></svg></button>
+        <span class="topbar-title" id="progress-topbar-title">生成中</span>
+        <span class="ghost-btn mono" id="progress-elapsed">00:00</span>
+      </header>
+
+      <div class="progress-hero">
+        <div class="ring" id="ring" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="生成进度">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="ring-track" cx="70" cy="70" r="62"></circle>
+            <circle class="ring-value" id="ring-value" cx="70" cy="70" r="62"></circle>
+          </svg>
+          <div class="ring-label">
+            <strong id="ring-percent">0<span>%</span></strong>
+            <small id="ring-stage">排队中</small>
+          </div>
+        </div>
+        <h2 id="progress-title">正在为你合成</h2>
+        <p class="progress-sub" id="progress-sub">全程约 1–3 分钟，可退出后台运行</p>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li data-step="tts"><span class="step-dot"></span><div><b>复刻音色</b><small>MiniMax 声音复刻</small></div><em>待开始</em></li>
+        <li data-step="driving"><span class="step-dot"></span><div><b>口型驱动</b><small>腾讯智影 · 视频免训练</small></div><em>待开始</em></li>
+        <li data-step="subtitle"><span class="step-dot"></span><div><b>字幕封装</b><small>9:16 · H.264</small></div><em>待开始</em></li>
+        <li data-step="done"><span class="step-dot"></span><div><b>成片就绪</b><small>保留 7 天，请及时下载</small></div><em>待开始</em></li>
+      </ol>
+
+      <p class="sr-only" id="sr-status" aria-live="polite"></p>
+
+      <div class="log-card">
+        <div class="log-live" id="log-live"><span class="pulse-dot"></span>LIVE</div>
+        <p id="progress-log">建立任务…</p>
+      </div>
+
+      <div class="error-card" id="error-card" hidden>
+        <p class="error-title">生成失败</p>
+        <p class="error-msg" id="error-msg"></p>
+        <div class="error-actions">
+          <button class="ghost-wide" id="btn-error-back">返回修改</button>
+          <button class="primary small" id="btn-retry">重试</button>
+        </div>
+      </div>
+
+      <div class="safe-bottom"></div>
+    </section>
+
+    <!-- =========================== RESULT =========================== -->
+    <section class="screen" id="screen-result" data-screen="result" inert>
+      <header class="topbar">
+        <button class="icon-btn" data-back="home" aria-label="返回"><svg class="ic"><use href="#i-back"/></svg></button>
+        <span class="topbar-title">成片</span>
+        <button class="ghost-btn" id="btn-works-result">作品</button>
+      </header>
+
+      <div class="player" id="player" tabindex="0" role="region" aria-label="成片播放器">
+        <video id="video" playsinline preload="metadata" crossorigin="anonymous"></video>
+        <div class="player-shade"></div>
+        <div class="player-caption" id="player-caption"></div>
+        <button class="player-big" id="btn-big" aria-label="播放"><svg class="ic"><use href="#i-play"/></svg></button>
+        <div class="player-controls">
+          <button class="pbtn" id="btn-play" aria-label="播放/暂停"><svg class="ic"><use href="#i-play"/></svg></button>
+          <span class="ptime" id="time-now">0:00</span>
+          <input class="seek" id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="进度" />
+          <span class="ptime" id="time-total">0:00</span>
+          <button class="pbtn" id="btn-mute" aria-label="静音"><svg class="ic"><use href="#i-volume"/></svg></button>
+        </div>
+      </div>
+
+      <div class="result-meta">
+        <div class="result-row">
+          <h2 id="result-title">口播成片</h2>
+          <span class="badge" id="result-badge">9:16</span>
+        </div>
+        <p class="result-sub" id="result-sub">—</p>
+        <div class="result-tags" id="result-tags"></div>
+      </div>
+
+      <div class="result-actions">
+        <button class="action primary" id="btn-download"><svg class="ic"><use href="#i-download"/></svg><span>下载</span></button>
+        <button class="action" id="btn-share"><svg class="ic"><use href="#i-share"/></svg><span>发小红书</span></button>
+        <button class="action" id="btn-again"><svg class="ic"><use href="#i-refresh"/></svg><span>再做一条</span></button>
+      </div>
+
+      <div class="compliance" id="result-compliance">智影云端资源保留 7 天，请及时下载归档</div>
+      <div class="safe-bottom"></div>
+    </section>
+  </div>
+
+  <nav class="tabbar" id="tabbar">
+    <button class="tab" data-tab="home"><svg class="ic"><use href="#i-person"/></svg>分身</button>
+    <button class="tab" data-tab="create"><svg class="ic"><use href="#i-sparkle"/></svg>创作</button>
+    <button class="tab" data-tab="works"><svg class="ic"><use href="#i-grid"/></svg>作品</button>
+  </nav>
+</div>
+
+<!-- ============================ SHEETS ============================ -->
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-grip"></div>
+    <div class="sheet-head">
+      <h3 id="sheet-title">作品</h3>
+      <button class="icon-btn" id="sheet-close" aria-label="关闭"><svg class="ic"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span id="toast-text"></span>
+  <button class="toast-action" id="toast-action" hidden></button>
+</div>
+<div class="drop-veil" id="drop-veil"><div>松手即可上传</div></div>
+<input type="file" id="file-input" accept="video/mp4,video/quicktime,video/x-m4v,video/*" hidden />
+
+<script src="/static/app.js"></script>
+</body>
+</html>
